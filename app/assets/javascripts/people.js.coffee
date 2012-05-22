@@ -2,5 +2,5 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-  $('BODY.table FORM').nestedFields
+  $('body form').nestedFields
     containerSelector: 'tbody'
