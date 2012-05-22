@@ -1,6 +1,5 @@
-ContactsNestedFields::Application.routes.draw do
-  #get '/person' => 'people#index'
-  resources 'people'
+Phonebook::Application.routes.draw do
+  resources :people
 
   root :to => 'people#index'
 end

@@ -18,30 +18,30 @@ class PeopleControllerTest < ActionController::TestCase
 
   test "should create person" do
     assert_difference('Person.count') do
-      post :create, :person => @person.attributes
+      post :create, person: { name: @person.name }
     end
 
     assert_redirected_to person_path(assigns(:person))
   end
 
   test "should show person" do
-    get :show, :id => @person.to_param
+    get :show, id: @person
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, :id => @person.to_param
+    get :edit, id: @person
     assert_response :success
   end
 
   test "should update person" do
-    put :update, :id => @person.to_param, :person => @person.attributes
+    put :update, id: @person, person: { name: @person.name }
     assert_redirected_to person_path(assigns(:person))
   end
 
   test "should destroy person" do
     assert_difference('Person.count', -1) do
-      delete :destroy, :id => @person.to_param
+      delete :destroy, id: @person
     end
 
     assert_redirected_to people_path
