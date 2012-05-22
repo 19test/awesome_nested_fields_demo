@@ -1,4 +1,4 @@
-<%= form_for([:plain, @person]) do |f| %>
+<%= form_for(@person) do |f| %>
   <% if @person.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
@@ -17,11 +17,24 @@
   </div>
   
   <h2>Phones</h2>
-  <div class="items">
-    <%= f.nested_fields_for :phones do |f|
-      render 'phone', f: f
-    end -%>
-  </div>
+  <table border="0" cellspacing="0" cellpadding="0">
+    <thead>
+      <tr>
+        <th>Place</th>
+        <th>Number</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= f.nested_fields_for :phones, show_empty: true do |f|
+        if f
+          render 'phone', f: f
+        else
+          render 'phone_none'
+        end
+      end -%>
+    </tbody>
+  </table>
   <a href="#" class="add">add phone</a>
   
   <div class="actions">

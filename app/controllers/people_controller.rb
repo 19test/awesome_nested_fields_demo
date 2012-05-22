@@ -1,4 +1,4 @@
-class Without::PeopleController < ApplicationController
+class PeopleController < ApplicationController
   # GET /people
   # GET /people.xml
   def index
@@ -25,7 +25,6 @@ class Without::PeopleController < ApplicationController
   # GET /people/new.xml
   def new
     @person = Person.new
-    @person.phones.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,7 +35,6 @@ class Without::PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
-    @person.phones.build
   end
 
   # POST /people
@@ -46,7 +44,7 @@ class Without::PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to([:without, @person], :notice => 'Person was successfully created.') }
+        format.html { redirect_to(@person, :notice => 'Person was successfully created.') }
         format.xml  { render :xml => @person, :status => :created, :location => @person }
       else
         format.html { render :action => "new" }
@@ -59,10 +57,10 @@ class Without::PeopleController < ApplicationController
   # PUT /people/1.xml
   def update
     @person = Person.find(params[:id])
-    
+
     respond_to do |format|
       if @person.update_attributes(params[:person])
-        format.html { redirect_to([:without, @person], :notice => 'Person was successfully updated.') }
+        format.html { redirect_to(@person, :notice => 'Person was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -78,7 +76,7 @@ class Without::PeopleController < ApplicationController
     @person.destroy
 
     respond_to do |format|
-      format.html { redirect_to(without_people_url) }
+      format.html { redirect_to(people_url) }
       format.xml  { head :ok }
     end
   end
